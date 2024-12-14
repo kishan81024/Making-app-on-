@@ -1,0 +1,20 @@
+using UnityEngine;
+
+public class PlayerMovement : MonoBehaviour
+{
+    public float moveSpeed = 5f;
+    public float rotationSpeed = 700f;
+
+    private void Update()
+    {
+        // Player movement
+        float move = Input.GetAxis("Vertical") * moveSpeed * Time.deltaTime;
+        float strafe = Input.GetAxis("Horizontal") * moveSpeed * Time.deltaTime;
+        
+        transform.Translate(strafe, 0, move);
+        
+        // Player rotation
+        float turn = Input.GetAxis("Mouse X") * rotationSpeed * Time.deltaTime;
+        transform.Rotate(0, turn, 0);
+    }
+}
