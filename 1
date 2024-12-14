@@ -1,0 +1,27 @@
+using UnityEngine;
+
+public class PawnAI : MonoBehaviour
+{
+    public float detectionRange = 10f;
+    public float moveSpeed = 3f;
+    private Transform target;
+
+    void Start()
+    {
+        target = GameObject.FindGameObjectWithTag("Player").transform;
+    }
+
+    void Update()
+    {
+        // Move toward the player if within range
+        if (Vector3.Distance(transform.position, target.position) < detectionRange)
+        {
+            MoveTowardPlayer();
+        }
+    }
+
+    void MoveTowardPlayer()
+    {
+        transform.position = Vector3.MoveTowards(transform.position, target.position, moveSpeed * Time.deltaTime);
+    }
+}
